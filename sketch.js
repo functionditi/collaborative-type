@@ -17,8 +17,11 @@ let visuals = []
 
 
 function setup() {
-  createCanvas(600, 600);
- 
+  createCanvas(500, 500);
+  background(255);
+  button = createButton('Add to collection');
+  button.position(100, 640);
+  button.mousePressed(saveNum);
   video = createCapture(VIDEO);
   video.size(width, height);
   rectMode(CENTER);
@@ -30,15 +33,19 @@ function setup() {
   
 }
 
+function saveNum(){
+  saveCanvas('png');
+}
+
+
 function modelReady() {
-  select('#status').html('Model Loaded');
+  select('#status').html('Draw the letter A with your nose!');
 }
 
 function draw() {
   
- 
   //image(video, 0, 0, width, height);
-   
+  
   drawKeypoints();
   for (var p in features) {
     if( features.hasOwnProperty(p) ) {
@@ -51,6 +58,9 @@ function draw() {
   visuals.forEach(el => {
   	el.draw();
   })
+
+
+  button
   
 }
 
@@ -81,14 +91,20 @@ function drawKeypoints()  {
       let keypoint = pose.keypoints[j];
       let matchPoints = ['nose'];
       let sep=50;
-  for (let i=100; i<width-100; i+=sep){
-    for (let j=100; j<height-100; j+=sep){
+     
+      
+  for (let i=sep/2; i<width; i+=sep){
+    for (let j=sep/2; j<height; j+=sep){
       if (matchPoints.indexOf(keypoint.part)>-1 && keypoint.score > 0.3) {
+        //text('your nose', keypoint.position.x, keypoint.position.y)
         fill(0, 255, 0);
         noStroke();
         
          if (-keypoint.position.x+width>=i && -keypoint.position.x+width<i+sep && keypoint.position.y>=j && keypoint.position.y<j+sep){
-        fill(0, 255, 0);
+        stroke(0, 255, 0);
+        strokeWeight(20);
+        noFill();
+
       }
         else{
           
