@@ -97,18 +97,19 @@ function drawKeypoints()  {
     for (let j=sep/2; j<height; j+=sep){
       if (matchPoints.indexOf(keypoint.part)>-1 && keypoint.score > 0.3) {
         //text('your nose', keypoint.position.x, keypoint.position.y)
-        fill(0, 255, 0);
+        fill(0);
         noStroke();
         
          if (-keypoint.position.x+width>=i && -keypoint.position.x+width<i+sep && keypoint.position.y>=j && keypoint.position.y<j+sep){
-        stroke(0, 255, 0);
+        
         strokeWeight(20);
-        noFill();
+        fill(0);
+        noStroke();
 
       }
         else{
           
-    stroke(0, 255, 0);
+    stroke(255);
    strokeWeight(1);
    noFill();
         }
@@ -135,7 +136,7 @@ function drawKeypoints()  {
         ellipse(i, j, sep, sep);
     }
   }
-      stroke(0, 255, 0);
+      stroke(255);
    strokeWeight(1);
    noFill();
     }
