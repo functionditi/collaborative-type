@@ -60,7 +60,7 @@ function draw() {
   })
 
 
-  button
+  //rect(width/2, height/2, width-2, height-2);
   
 }
 
@@ -92,7 +92,7 @@ function drawKeypoints()  {
       let matchPoints = ['nose'];
       let sep=50;
      
-      
+      strokeWeight(0.5);
   for (let i=sep/2; i<width; i+=sep){
     for (let j=sep/2; j<height; j+=sep){
       if (matchPoints.indexOf(keypoint.part)>-1 && keypoint.score > 0.3) {
@@ -102,16 +102,14 @@ function drawKeypoints()  {
         
          if (-keypoint.position.x+width>=i && -keypoint.position.x+width<i+sep && keypoint.position.y>=j && keypoint.position.y<j+sep){
         
-        strokeWeight(20);
-        fill(0);
-        noStroke();
+          noStroke();
+          fill(0);
 
       }
         else{
           
-    stroke(255);
-   strokeWeight(1);
-   noFill();
+          stroke(170);
+          noFill();
         }
         if(!(keypoint.part in features)) {
         	features[keypoint.part] = {
@@ -136,8 +134,7 @@ function drawKeypoints()  {
         ellipse(i, j, sep, sep);
     }
   }
-      stroke(255);
-   strokeWeight(1);
+  stroke(170);
    noFill();
     }
   }
